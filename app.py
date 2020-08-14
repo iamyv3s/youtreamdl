@@ -9,7 +9,7 @@ class HelloWorld(object):
         bestaudio = video.getbestaudio()
         bestvideo = video.getbestvideo('mp4')
         
-        return bestaudio.url
+        raise cherrypy.HTTPRedirect(bestaudio.url)
 
 config = {
     'global': {
