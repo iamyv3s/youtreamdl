@@ -1,7 +1,6 @@
 import cherrypy
 import pafy
 import os
-import ffmpeg
 import subprocess
 
 
