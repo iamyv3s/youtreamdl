@@ -10,8 +10,8 @@ class HelloWorld(object):
         video = pafy.new(url)
         title = video.title.replace(" ", "_")
         bestaudio = video.getbestaudio(preftype="m4a")
-        BESTFILE = os.getcwd() + "/" + str(title) + "." + str(bestaudio.extension)
-        MP3FILE = os.getcwd() + "/" + str(title) + ".mp3"
+        BESTFILE = os.getcwd() + "/media/" + str(title) + "." + str(bestaudio.extension)
+        MP3FILE = os.getcwd() + "/media/" + str(title) + ".mp3"
         print (BESTFILE, MP3FILE)
         bestaudio.download(BESTFILE)
         print ("You have successfully downloaded the ."+str(bestaudio.extension)+" file")
@@ -24,20 +24,20 @@ class HelloWorld(object):
                 <title> Download </title>
             </head>
             <body>
-            <a href="%(link)s" download="%(file)s">download</a>
+            <a href="%(link)s" download>download</a>
             </body>
             </html>
-            """ %{ 'link': MP3FILE, 'file': str(title)}
+            """ %{ 'link': 'media'+ "/" + str(title) + ".mp3", 'file': str(title)}
 
 config = {
     'global': {
         'server.socket_host': '0.0.0.0',
         'server.socket_port': int(os.environ.get('PORT', 5000)),
     },
-    '/assets': {
+    '/media': {
         'tools.staticdir.root': os.path.dirname(os.path.abspath(__file__)),
         'tools.staticdir.on': True,
-        'tools.staticdir.dir': 'assets',
+        'tools.staticdir.dir': 'media',
     }
 }
 
