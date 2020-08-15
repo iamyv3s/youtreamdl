@@ -6,7 +6,7 @@ class HelloWorld(object):
     @cherrypy.expose
     def index(self, url="0C80BSgjb8M"):
         video = pafy.new(url)
-        bestaudio = video.getbestaudio(preftype="m4")
+        bestaudio = video.getbestaudio(preftype="m4a")
         bestvideo = video.getbestvideo('mp4')
         
         raise cherrypy.HTTPRedirect(bestaudio.url)
