@@ -1,15 +1,34 @@
 import cherrypy
 import pafy
 import os
+import ffmpeg
+import subprocess
+
 
 class HelloWorld(object):
     @cherrypy.expose
     def index(self, url="0C80BSgjb8M"):
         video = pafy.new(url)
+        title = video.title.replace(" ", "_")
         bestaudio = video.getbestaudio(preftype="m4a")
-        bestvideo = video.getbestvideo('mp4')
-        
-        raise cherrypy.HTTPRedirect(bestaudio.url)
+        BESTFILE = os.getcwd() + "/" + str(title) + "." + str(bestaudio.extension)
+        MP3FILE = os.getcwd() + "/" + str(title) + ".mp3"
+        print (BESTFILE, MP3FILE)
+        bestaudio.download(BESTFILE)
+        print ("You have successfully downloaded the ."+str(bestaudio.extension)+" file")
+        command = "ffmpeg -i "+str(BESTFILE)+" -vn -ab 128k -ar 44100 -y "+str(MP3FILE)
+        subprocess.call(command, shell=True)
+        os.remove(BESTFILE)
+        return """
+            <html>
+            <head>
+                <title> Download </title>
+            </head>
+            <body>
+            <a href="%(link)s" download="%(file)s">download</a>
+            </body>
+            </html>
+            """ %{ 'link': MP3FILE, 'file': str(title)}
 
 config = {
     'global': {
