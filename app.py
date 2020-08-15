@@ -22,7 +22,7 @@ class HelloWorld(object):
         subprocess.call(command1, shell=True)
         subprocess.call(command2, shell=True)
         os.remove(BESTFILE)
-        os.remove(MP3FILE)
+        # os.remove(MP3FILE)
         return """
             <html>
             <head>
