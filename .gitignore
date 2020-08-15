@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 cenv
-Burna Boy - Level Up (Twice As Tall) (feat. Youssou N'Dour) [Official Audio]-waImBy8OMrs.mp4
-=======
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -131,4 +129,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
->>>>>>> cee116069117e8fd9e10b6cdcf84bf0c4520c968

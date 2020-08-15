@@ -1,2 +1,2 @@
 # youtreamdl
-An that convert youtube video into mp3 file
+a web app that convert youtube video into mp3 file.
