@@ -8,7 +8,9 @@ class HelloWorld(object):
     @cherrypy.expose
     def index(self, url="0C80BSgjb8M"):
         video = pafy.new(url)
-        title = video.title.replace(" ", "_")
+        title1 = video.title.replace("(", "")
+        title2 = title1.replace(")", "")
+        title = title2.replace(" ", "_")
         bestaudio = video.getbestaudio(preftype="m4a")
         BESTFILE = os.getcwd() + "/media/" + str(title) + "." + str(bestaudio.extension)
         MP3FILE = os.getcwd() + "/media/" + str(title) + ".mp3"
